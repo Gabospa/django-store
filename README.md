@@ -1,6 +1,6 @@
 # django-store
 
-E-commerce using Django and Django Templates based on Codigo Facilito Project
+E-commerce using Django and Django Templates based on Facilito Project
 
 ## Install
 Create virtual environment called (venv) and install Django and Pillow with pip.
