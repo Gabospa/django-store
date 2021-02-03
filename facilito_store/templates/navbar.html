@@ -1,0 +1,50 @@
+{% url 'login' as login %}
+{% url 'register' as register %}
+{% url 'logout' as logout %}
+{% url 'carts:cart' as cart %}
+{% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">Tiendita Store</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navb" aria-controls="navb" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-flex" id="navb">
+          
+        <ul class="navbar-nav">
+          <li class="nav-item {% if request.path == cart %}active{% endif %}">
+            <a class="nav-link" href="{{cart}}"><span class="fas fa-shopping-cart"></span> Mi carrito </a>
+          </li>
+          {% if user.is_authenticated %}
+          
+          <li class="nav-item {% if request.path == shipping_addresses %}active{% endif %}">
+            <a class="nav-link" href="{{shipping_addresses}}"><span class="fas fa-location-arrow"></span> Mi direcciones </a>
+          </li>
+          {% endif %}
+        </ul>
+        
+        <ul class="nav navbar-nav ml-auto">
+  
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ logout }}">
+                <i class="fas fa-sign-in-alt"></i>
+                Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item {% if request.path == login %}active{% endif %}">
+              <a class="nav-link" href="{{ login }}">
+                <i class="fas fa-user"></i>
+                Login</a>
+            </li>
+            <li class="nav-item {% if request.path == register %}active{% endif %}">
+              <a class="nav-link" href="{{ register }}">
+                <i class="fas fa-user-plus"></i>
+                Registro</a>
+            </li>
+            {% endif %}
+          </ul>
+      </div>
+    </div>
+  </nav>
